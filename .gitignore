@@ -1,0 +1,7 @@
+# gitlab
+gitlab/gitlab/config/*
+gitlab/gitlab/data/*
+gitlab/gitlab/logs/*
+
+# gitlab runner
+gitlab/runner/config/*

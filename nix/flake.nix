@@ -1,5 +1,5 @@
 {
-  description = "NixOs by Ognev";
+  description = "diploma nixos configuration. server with ci/cd";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixvim.url = "github:leonyaognev/nixvim-config";
@@ -8,7 +8,7 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.diploma = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix

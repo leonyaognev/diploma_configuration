@@ -9,6 +9,7 @@
       ./modules/security.nix
       ./modules/users.nix
       ./modules/packages.nix
+      ./modules/nginx.nix
       inputs.home-manager.nixosModules.home-manager
     ];
 

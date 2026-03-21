@@ -17,4 +17,9 @@
       bantime = "1h";
     };
   };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "penguin.ognev@gmail.com";
+  };
 }

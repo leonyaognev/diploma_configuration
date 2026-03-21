@@ -8,7 +8,7 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         gitlab_rails['gitlab_shell_ssh_port'] = 8822
     ports:
-      - "80:80"
+      - "8000:80"
       - "8822:22"
     volumes:
       - /tb_storage/gitlab/config:/etc/gitlab

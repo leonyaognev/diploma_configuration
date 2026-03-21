@@ -11,10 +11,4 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-
-  programs.git = {
-    enable = true;
-    userName = "Leonid";
-    userEmail = "penguin.ognev@gmail.com";
-  };
 }

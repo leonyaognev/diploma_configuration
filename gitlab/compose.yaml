@@ -3,7 +3,12 @@ services:
     image: gitlab/gitlab-ce:latest
     hostname: git.osfb.dev
     restart: unless-stopped
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        registry_external_url 'http://registry.git.osfb.dev:5005'
+        gitlab_rails['registry_enabled'] = true
     ports:
+      - "5005:5005"
       - "8000:80"
       - "22:22"
     volumes:

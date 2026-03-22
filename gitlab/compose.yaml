@@ -1,0 +1,31 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    hostname: git.osfb.dev
+    restart: unless-stopped
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.example.com'
+    ports:
+      - "8000:80"
+      - "22:22"
+    volumes:
+      - /tb_storage/gitlab/config:/etc/gitlab
+      - /tb_storage/gitlab/data:/var/opt/gitlab
+      - /tb_storage/gitlab/logs:/var/log/gitlab
+    networks:
+      - gitlab_net
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:alpine
+    restart: unless-stopped
+    depends_on:
+      - gitlab
+    volumes:
+      - /tb_storage/runner/config/:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - gitlab_net
+
+networks:
+  gitlab_net:

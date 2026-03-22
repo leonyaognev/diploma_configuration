@@ -27,6 +27,7 @@
     btop
     ncdu
     kitty
+    dysk
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

@@ -3,9 +3,6 @@ services:
     image: gitlab/gitlab-ce:latest
     hostname: git.osfb.dev
     restart: unless-stopped
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.example.com'
     ports:
       - "8000:80"
       - "22:22"

@@ -18,7 +18,12 @@
   home-manager.users.ognev = import ./home/home.nix;
 
   services.libinput.enable = true;
-  services.openssh.enable = true;
+  services.openssh =
+    {
+      enable = true;
+      ports = [ 8822 ];
+    };
+
   virtualisation.docker.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

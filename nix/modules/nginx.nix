@@ -3,7 +3,8 @@
 {
   services.nginx = {
     enable = true;
-    virtualHosts."osfb.dev" = {
+    recommendedProxySettings = true;
+    virtualHosts."git.osfb.dev" = {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
@@ -12,6 +13,8 @@
         extraConfig = ''
           proxy_ssl_server_name on;
           proxy_pass_header Authorization;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header X-Forwarded-Ssl on;
         '';
       };
     };

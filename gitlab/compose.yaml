@@ -5,10 +5,20 @@ services:
     restart: unless-stopped
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        registry_external_url 'http://registry.git.osfb.dev:5005'
+        registry_external_url 'https://registry.git.osfb.dev'
         gitlab_rails['registry_enabled'] = true
+        registry_nginx['listen_port'] = 5050
+        registry_nginx['listen_https'] = false
+
+        external_url 'https://git.osfb.dev'
+        nginx['listen_https'] = false
+        nginx['listen_port'] = 80
+        nginx['proxy_set_headers'] = {
+          "X-Forwarded-Proto" => "https",
+          "X-Forwarded-Ssl" => "on"
+        }
     ports:
-      - "5005:5005"
+      - "5000:5050"
       - "8000:80"
       - "22:22"
     volumes:

@@ -5,6 +5,7 @@
 
   environment.systemPackages = with pkgs; [
     ranger
+    gnumake
     curl
     git
     python3

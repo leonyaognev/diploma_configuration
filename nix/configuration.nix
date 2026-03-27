@@ -29,6 +29,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
+  documentation.man.cache.enable = false;
+
   nix = {
     gc = {
       automatic = true;

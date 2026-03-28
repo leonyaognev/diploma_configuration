@@ -13,7 +13,7 @@
 
   outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs: {
     nixosConfigurations.diploma = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; sopsFile = ./secrets.enc.yaml; ageKeyFile = ./sops/keys.txt; };
+      specialArgs = { inherit inputs; sopsFile = ./secrets.enc.yaml; };
       modules = [
         ./configuration.nix
 

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, sopsFile, ageKeyFile, ... }:
+{ config, lib, pkgs, inputs, sopsFile, ... }:
 
 {
   imports =

@@ -5,3 +5,7 @@ gitlab/gitlab/logs/*
 
 # gitlab runner
 gitlab/runner/config/*
+
+# age keys
+sops/
+secrets.yaml

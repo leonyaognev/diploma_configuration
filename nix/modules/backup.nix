@@ -1,23 +1,33 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, sopsFile, ... }:
 
 {
+  imports =
+    [ inputs.sops-nix.nixosModules.sops ];
+
+  sops = {
+    age.keyFile = "../sops/keys.txt";
+    defaultSopsFile = sopsFile;
+    secrets = {
+      "restic/repo_password" = { };
+      "restic/server_url" = { };
+    };
+  };
+
   services.restic.backups.localtest = {
     initialize = true;
 
-    # ЧТО бэкапим
     paths = [
       "/tb_storage/gitlab"
     ];
+    passwordFile = config.sops.secrets."restic/repo_password".path;
+    repositoryFile = config.sops.secrets."restic/server_url".path;
 
-    # КУДА бэкапим (локальная папка)
-    repository = "/tb_storage/backup-gitlab";
 
-    # Пароль (да, прямо в конфиге, тебе же “пофиг на безопасность”)
-    password = "1234";
-
-    # Как часто
+    pruneOpts = [
+      "--keep-daily 2"
+    ];
     timerConfig = {
-      OnCalendar = "hourly"; # можно daily, weekly, etc
+      OnCalendar = "hourly";
     };
   };
 }

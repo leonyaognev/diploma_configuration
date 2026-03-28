@@ -30,6 +30,8 @@
     kitty
     dysk
     restic
+    sops
+    age
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

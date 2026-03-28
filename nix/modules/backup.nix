@@ -1,11 +1,11 @@
-{ config, inputs, pkgs, sopsFile, ... }:
+{ config, inputs, pkgs, sopsFile, ageKeyFile, ... }:
 
 {
   imports =
     [ inputs.sops-nix.nixosModules.sops ];
 
   sops = {
-    age.keyFile = "../sops/keys.txt";
+    age.keyFile = ageKeyFile;
     defaultSopsFile = sopsFile;
     secrets = {
       "restic/repo_password" = { };

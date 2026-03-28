@@ -10,6 +10,7 @@
       ./modules/users.nix
       ./modules/packages.nix
       ./modules/nginx.nix
+      ./modules/backup.nix
       inputs.home-manager.nixosModules.home-manager
     ];
 

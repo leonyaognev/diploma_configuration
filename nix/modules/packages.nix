@@ -29,6 +29,7 @@
     ncdu
     kitty
     dysk
+    restic
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

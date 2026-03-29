@@ -1,0 +1,18 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    ports:
+      - 8096:8096/tcp
+      - 7359:7359/udp
+    volumes:
+      - /tb_storage/jellyfin/config:/config
+      - /tb_storage/jellyfin/cache:/cache
+      - type: bind
+        source: /tb_storage/jellyfin/media
+        target: /media
+    restart: 'unless-stopped'
+    environment:
+      - JELLYFIN_PublishedServerUrl=https://chlenify.ru
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'

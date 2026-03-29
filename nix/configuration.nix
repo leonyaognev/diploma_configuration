@@ -34,6 +34,27 @@
   documentation.info.enable = false;
   documentation.doc.enable = false;
 
+  programs.amnezia-vpn.enable = true;
+
+  systemd.services.amnezia-vpn = {
+    description = "AmneziaVPN Service";
+    after = [ "network.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+      Restart = "always";
+      User = "ognev";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  services.qbittorrent = {
+    enable = true;
+    openFirewall = true;
+    user = "ognev";
+    group = "users";
+    webuiPort = 8372;
+  };
+
   nix = {
     gc = {
       automatic = true;

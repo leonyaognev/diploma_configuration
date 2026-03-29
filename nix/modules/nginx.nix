@@ -12,7 +12,9 @@
       enableACME = true;
 
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8096";
+        proxyPass = "http://127.0.0.1:4533";
+        proxyWebsockets = true;
+
         extraConfig = ''
           proxy_ssl_server_name on;
           proxy_pass_header Authorization;
@@ -22,8 +24,9 @@
       };
 
       locations."/socket" = {
-        proxyPass = "http://127.0.0.1:8096";
+        proxyPass = "http://127.0.0.1:4533";
         proxyWebsockets = true;
+
         extraConfig = ''
           proxy_ssl_server_name on;
           proxy_pass_header Authorization;
@@ -74,6 +77,36 @@
 
       locations."/" = {
         proxyPass = "http://127.0.0.1:5000";
+        proxyWebsockets = true;
+      };
+    };
+
+    virtualHosts."torrent.osfb.dev" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8372";
+        proxyWebsockets = true;
+      };
+    };
+
+    virtualHosts."matrix.osfb.dev" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8008";
+        proxyWebsockets = true;
+      };
+    };
+
+    virtualHosts."web.matrix.osfb.dev" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8083";
         proxyWebsockets = true;
       };
     };

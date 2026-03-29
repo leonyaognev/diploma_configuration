@@ -9,3 +9,7 @@ gitlab/runner/config/*
 # age keys
 sops/
 secrets.yaml
+
+# messanger
+
+data/

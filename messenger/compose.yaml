@@ -1,0 +1,22 @@
+services:
+  synapse:
+    image: matrixdotorg/synapse:latest
+    container_name: synapse
+    restart: unless-stopped
+    ports:
+      - "8008:8008"
+    volumes:
+      - ./data:/data
+    environment:
+      SYNAPSE_SERVER_NAME: "matrix.osfb.dev"
+      SYNAPSE_REPORT_STATS: "no"
+
+  element-web:
+    image: vectorim/element-web:latest
+    container_name: element-web
+    restart: unless-stopped
+    ports:
+      - "8083:80"
+    environment:
+      - DEFAULT_HS_URL=https://matrix.osfb.dev
+      - DEFAULT_IS_URL=https://matrix.osfb.dev

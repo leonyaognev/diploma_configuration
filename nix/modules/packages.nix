@@ -32,6 +32,8 @@
     restic
     sops
     age
+    amneziawg-tools
+    amneziawg-go
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

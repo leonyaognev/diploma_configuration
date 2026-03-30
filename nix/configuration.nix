@@ -11,6 +11,7 @@
       ./modules/packages.nix
       ./modules/nginx.nix
       ./modules/backup.nix
+      ./modules/monitoring.nix
       inputs.home-manager.nixosModules.home-manager
     ];
 

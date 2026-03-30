@@ -5,6 +5,27 @@
     enable = true;
     recommendedProxySettings = true;
 
+    # ===[ Lidarr ]===
+
+    virtualHosts."lidarr.osfb.dev" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8686";
+        proxyWebsockets = true;
+
+        extraConfig = ''
+          proxy_ssl_server_name on;
+          proxy_pass_header Authorization;
+          proxy_set_header X-Forwarded-Proto https;
+          proxy_set_header X-Forwarded-Ssl on;
+        '';
+      };
+    };
+
+
+
     # ===[ Git Lab ]===
 
     virtualHosts."chlenify.ru" = {
@@ -110,6 +131,18 @@
         proxyWebsockets = true;
       };
     };
+
+    virtualHosts."cloud.osfb.dev" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:9090";
+        proxyWebsockets = true;
+      };
+    };
+
+
 
     # ===[ Culty ]===
     virtualHosts."culty.space" = {

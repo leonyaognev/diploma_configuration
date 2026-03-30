@@ -1,18 +1,8 @@
-{ config, inputs, pkgs, sopsFile, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   imports =
     [ inputs.sops-nix.nixosModules.sops ];
-
-  sops = {
-    age.keyFile = "/etc/sops-key.txt";
-    age.generateKey = true;
-    defaultSopsFile = sopsFile;
-    secrets = {
-      "restic/repo_password" = { };
-      "restic/server_url" = { };
-    };
-  };
 
   services.restic.backups.localtest = {
     initialize = true;

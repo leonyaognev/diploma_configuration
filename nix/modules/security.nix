@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, sopsFile, ... }:
 
 {
   networking.firewall.enable = true;
@@ -21,5 +21,17 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "penguin.ognev@gmail.com";
+  };
+
+  sops = {
+    age.keyFile = "/etc/sops-key.txt";
+    age.generateKey = true;
+    defaultSopsFile = sopsFile;
+    secrets = {
+      "restic/repo_password" = { };
+      "restic/server_url" = { };
+      "grafana/grafana_password" = { };
+      "grafana/influx_DB_Token" = { };
+    };
   };
 }

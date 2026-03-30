@@ -6,7 +6,7 @@ services:
     ports:
       - "8008:8008"
     volumes:
-      - ./data:/data
+      - /tb_storage/matrix_data:/data
     environment:
       SYNAPSE_SERVER_NAME: "matrix.osfb.dev"
       SYNAPSE_REPORT_STATS: "no"

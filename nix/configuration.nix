@@ -50,8 +50,8 @@
   services.qbittorrent = {
     enable = true;
     openFirewall = true;
-    user = "ognev";
-    group = "users";
+    user = "qbittorrent";
+    group = "qbittorrent";
     webuiPort = 8372;
   };
 

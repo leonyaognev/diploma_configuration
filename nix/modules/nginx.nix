@@ -118,37 +118,41 @@
       locations."/" = {
         proxyPass = "http://127.0.0.1:9090";
         proxyWebsockets = true;
-      };
-    };
-
-
-
-    # ===[ Culty ]===
-    virtualHosts."culty.space" = {
-      forceSSL = true;
-      enableACME = true;
-
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8081";
-        proxyWebsockets = true;
         extraConfig = ''
-          proxy_ssl_server_name on;
-          proxy_pass_header Authorization;
-          proxy_set_header X-Forwarded-Proto https;
-          proxy_set_header X-Forwarded-Ssl on;
-        '';
-      };
-
-      locations."/api" = {
-        proxyPass = "http://127.0.0.1:8080";
-        proxyWebsockets = true;
-        extraConfig = ''
-          proxy_ssl_server_name on;
-          proxy_pass_header Authorization;
-          proxy_set_header X-Forwarded-Proto https;
-          proxy_set_header X-Forwarded-Ssl on;
+          client_max_body_size 5G;
         '';
       };
     };
   };
+
+
+
+  # ===[ Culty ]===
+  virtualHosts."culty.space" = {
+    forceSSL = true;
+    enableACME = true;
+
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8081";
+      proxyWebsockets = true;
+      extraConfig = ''
+        proxy_ssl_server_name on;
+        proxy_pass_header Authorization;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-Ssl on;
+      '';
+    };
+
+    locations."/api" = {
+      proxyPass = "http://127.0.0.1:8080";
+      proxyWebsockets = true;
+      extraConfig = ''
+        proxy_ssl_server_name on;
+        proxy_pass_header Authorization;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-Ssl on;
+      '';
+    };
+  };
+};
 }

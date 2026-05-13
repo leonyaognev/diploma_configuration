@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -26,6 +26,11 @@
 
   fileSystems."/tb_storage" =
     { device = "/dev/disk/by-uuid/a1d8d4c8-fb6b-43f8-8625-5912dd1a29eb";
+      fsType = "ext4";
+    };
+
+  fileSystems."/tb_storage2" =
+    { device = "/dev/disk/by-uuid/cded4085-90d4-4c27-bcaa-b7692aa7e6af";
       fsType = "ext4";
     };
 

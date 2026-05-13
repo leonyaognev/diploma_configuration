@@ -22,7 +22,6 @@
     bash
     pokemon-colorscripts
     fastfetch
-    neofetch
     killall
     htop
     btop
@@ -34,6 +33,9 @@
     age
     amneziawg-tools
     amneziawg-go
+    vulkan-tools
+    mesa-demos
+    radeontop
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

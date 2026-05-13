@@ -23,6 +23,13 @@
     {
       enable = true;
       ports = [ 8822 ];
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        ChallengeResponseAuthentication = false;
+        PermitRootLogin = "no";
+        PubkeyAuthentication = true;
+      };
     };
 
   virtualisation.docker.enable = true;
@@ -34,24 +41,9 @@
   documentation.info.enable = false;
   documentation.doc.enable = false;
 
-  programs.amnezia-vpn.enable = true;
-
-  systemd.services.amnezia-vpn = {
-    description = "AmneziaVPN Service";
-    after = [ "network.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
-      Restart = "always";
-      User = "ognev";
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
-
   services.qbittorrent = {
     enable = true;
     openFirewall = true;
-    user = "qbittorrent";
-    group = "qbittorrent";
     webuiPort = 8372;
   };
 
@@ -62,4 +54,22 @@
       options = "--delete-older-than 8d";
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    mesa
+    mesa.drivers
+    vulkan-tools
+  ];
+
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-vulkan;
+    host = "0.0.0.0";
+  };
+
+  swapDevices = [
+    {
+      device = "/swapfile";
+    }
+  ];
 }

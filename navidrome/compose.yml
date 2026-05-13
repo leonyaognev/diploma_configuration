@@ -5,5 +5,5 @@ services:
       - "4533:4533"
     restart: unless-stopped
     volumes:
-      - "/tb_storage/navidrome/data:/data"
-      - "/tb_storage/navidrome/music:/music:ro"
+      - "/tb_storage2/navidrome/data:/data"
+      - "/tb_storage2/navidrome/music:/music:ro"

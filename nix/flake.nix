@@ -2,7 +2,7 @@
   description = "diploma nixos configuration. server with ci/cd";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixvim.url = "github:leonyaognev/nixvim-config";
+    nixvim.url = "github:burs1/nixvim-config";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

@@ -15,6 +15,7 @@ services:
 
   app:
     image: nextcloud
+    restart: unless-stopped
     ports:
       - 9090:80
     depends_on:

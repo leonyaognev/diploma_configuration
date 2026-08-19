@@ -97,6 +97,26 @@
       };
     };
 
+    virtualHosts."maze.osfb.dev" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:9291";
+        proxyWebsockets = true;
+      };
+    };
+
+    virtualHosts."stripe-test-task.osfb.dev" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:9292";
+        proxyWebsockets = true;
+      };
+    };
+
     virtualHosts."torrent.osfb.dev" = {
       forceSSL = true;
       enableACME = true;

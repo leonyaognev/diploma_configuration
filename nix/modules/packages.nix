@@ -36,6 +36,9 @@
     vulkan-tools
     mesa-demos
     radeontop
+    iperf3
     inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
+    wget
+    curl
   ];
 }

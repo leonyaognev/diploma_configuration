@@ -24,7 +24,7 @@
       enable = true;
       ports = [ 8822 ];
       settings = {
-        PasswordAuthentication = false;
+        PasswordAuthentication = true;
         KbdInteractiveAuthentication = false;
         ChallengeResponseAuthentication = false;
         PermitRootLogin = "no";

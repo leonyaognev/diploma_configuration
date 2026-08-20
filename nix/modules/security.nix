@@ -2,8 +2,8 @@
 
 {
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 80 443 11434 ];
-  networking.firewall.allowedUDPPorts = [ ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 25565 11434 ];
+  networking.firewall.allowedUDPPorts = [ 25565 11434 ];
 
   services.fail2ban.enable = true;
 

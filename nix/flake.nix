@@ -1,8 +1,16 @@
 {
   description = "diploma nixos configuration. server with ci/cd";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     nixvim.url = "github:burs1/nixvim-config";
+
+    # Framework for flake structuring.
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # Helper, that imports all modules recursevly.
+    import-tree.url = "github:vic/import-tree";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -11,17 +19,8 @@
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs: {
-    nixosConfigurations.diploma = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; sopsFile = ./secrets.enc.yaml; };
-      modules = [
-        ./configuration.nix
-
-        home-manager.nixosModules.home-manager
-        sops-nix.nixosModules.sops
-      ];
-    };
-  };
-
+  # Import modules automatically
+  outputs = inputs: inputs.flake-parts.lib.mkFlake
+    { inherit inputs; }
+    (inputs.import-tree ./modules);
 }
-
